@@ -1,4 +1,4 @@
-package net.cloudburo.startup;
+package net.cloudburo.app;
 
 import org.flowable.idm.api.IdmIdentityService;
 import org.flowable.idm.api.Privilege;

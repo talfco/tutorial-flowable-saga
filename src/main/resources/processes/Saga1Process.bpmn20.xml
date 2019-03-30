@@ -2,17 +2,17 @@
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.flowable.org/processdef">
   <process id="saga1Process" name="saga-hello-world1" isExecutable="true">
     <documentation>This is a saga process model</documentation>
-    <startEvent id="startEvent1"></startEvent>
-    <serviceTask id="camelAsyncTask" name="Async Camel" flowable:async="true" flowable:exclusive="false" flowable:type="camel"></serviceTask>
-    <receiveTask id="receiveAsyncTask" name="receiveAsyncResponse"></receiveTask>
-    <serviceTask id="initVariablesTask" name="Initalise Variables" flowable:class="net.cloudburo.task.InitVariablesTask"></serviceTask>
-    <serviceTask id="saveOutputTask" name="Save Variable Output" flowable:class="net.cloudburo.task.SaveOutputTask"></serviceTask>
-    <endEvent id="sid-0BFFEEE9-61D4-4982-A2CA-F0A0AF6F0699"></endEvent>
-    <sequenceFlow id="sid-86397EAD-67C2-4E79-9503-93FA4AC46FF5" sourceRef="startEvent1" targetRef="initVariablesTask"></sequenceFlow>
-    <sequenceFlow id="sid-A3883109-843E-462E-8D4E-57745A871E4A" sourceRef="initVariablesTask" targetRef="camelAsyncTask"></sequenceFlow>
-    <sequenceFlow id="sid-BDFE47D0-2C35-4990-AE24-F166D945F525" sourceRef="camelAsyncTask" targetRef="receiveAsyncTask"></sequenceFlow>
-    <sequenceFlow id="sid-6904C636-967D-4612-A888-A650A332AE82" sourceRef="receiveAsyncTask" targetRef="saveOutputTask"></sequenceFlow>
-    <sequenceFlow id="sid-4F811BA6-714D-4035-BF4D-CC3B487CC9CE" sourceRef="saveOutputTask" targetRef="sid-0BFFEEE9-61D4-4982-A2CA-F0A0AF6F0699"></sequenceFlow>
+    <startEvent id="startEvent1"/>
+    <serviceTask id="camelAsyncTask" name="Async Camel" flowable:async="true" flowable:exclusive="false" flowable:type="camel"/>
+    <receiveTask id="receiveAsyncTask" name="receiveAsyncResponse"/>
+    <serviceTask id="initVariablesTask" name="Initalise Variables" flowable:class="net.cloudburo.task.saga1.InitVariablesTask"/>
+    <serviceTask id="saveOutputTask" name="Save Variable Output" flowable:class="net.cloudburo.task.saga1.SaveOutputTask"/>
+    <endEvent id="sid-0BFFEEE9-61D4-4982-A2CA-F0A0AF6F0699"/>
+    <sequenceFlow id="sid-86397EAD-67C2-4E79-9503-93FA4AC46FF5" sourceRef="startEvent1" targetRef="initVariablesTask"/>
+    <sequenceFlow id="sid-A3883109-843E-462E-8D4E-57745A871E4A" sourceRef="initVariablesTask" targetRef="camelAsyncTask"/>
+    <sequenceFlow id="sid-BDFE47D0-2C35-4990-AE24-F166D945F525" sourceRef="camelAsyncTask" targetRef="receiveAsyncTask"/>
+    <sequenceFlow id="sid-6904C636-967D-4612-A888-A650A332AE82" sourceRef="receiveAsyncTask" targetRef="saveOutputTask"/>
+    <sequenceFlow id="sid-4F811BA6-714D-4035-BF4D-CC3B487CC9CE" sourceRef="saveOutputTask" targetRef="sid-0BFFEEE9-61D4-4982-A2CA-F0A0AF6F0699"/>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_saga1">
     <bpmndi:BPMNPlane bpmnElement="saga1" id="BPMNPlane_saga1">

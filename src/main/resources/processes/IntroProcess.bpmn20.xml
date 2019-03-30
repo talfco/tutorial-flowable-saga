@@ -8,7 +8,7 @@
     <process id="introProcess">
         <startEvent id="start"/>
         <sequenceFlow id="flow1" sourceRef="start" targetRef="introTask" />
-        <serviceTask id="introTask" flowable:class="net.cloudburo.task.IntroTask" />
+        <serviceTask id="introTask" flowable:class="net.cloudburo.task.intro.IntroTask" />
         <sequenceFlow id="flow2" sourceRef="introTask" targetRef="end" />
         <endEvent id="end" />
     </process>

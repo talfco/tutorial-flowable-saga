@@ -1,4 +1,4 @@
-package net.cloudburo.controller;
+package net.cloudburo.app.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;

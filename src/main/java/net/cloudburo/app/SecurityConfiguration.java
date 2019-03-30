@@ -1,4 +1,4 @@
-package net.cloudburo.startup;
+package net.cloudburo.app;
 
 import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.boot.actuate.health.HealthEndpoint;
