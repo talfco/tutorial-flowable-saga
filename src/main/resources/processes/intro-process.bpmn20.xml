@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions id="introProcessDefintion"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:flowable="http://flowable.org/bpmn"
+             targetNamespace="http://flowable.org/examples">
+
+    <process id="introProcess">
+        <startEvent id="start"/>
+        <sequenceFlow id="flow1" sourceRef="start" targetRef="introTask" />
+        <serviceTask id="introTask" flowable:class="net.cloudburo.task.IntroTask" />
+        <sequenceFlow id="flow2" sourceRef="introTask" targetRef="end" />
+        <endEvent id="end" />
+    </process>
+
+</definitions>

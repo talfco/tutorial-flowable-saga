@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.flowable.org/processdef">
+  <process id="saga1Process" name="saga-hello-world1" isExecutable="true">
+    <documentation>This is a saga process model</documentation>
+    <startEvent id="startEvent1"></startEvent>
+    <serviceTask id="camelAsyncTask" name="Async Camel" flowable:async="true" flowable:exclusive="false" flowable:type="camel"></serviceTask>
+    <receiveTask id="receiveAsyncTask" name="receiveAsyncResponse"></receiveTask>
+    <serviceTask id="initVariablesTask" name="Initalise Variables" flowable:class="net.cloudburo.task.InitVariablesTask"></serviceTask>
+    <serviceTask id="saveOutputTask" name="Save Variable Output" flowable:class="net.cloudburo.task.SaveOutputTask"></serviceTask>
+    <endEvent id="sid-0BFFEEE9-61D4-4982-A2CA-F0A0AF6F0699"></endEvent>
+    <sequenceFlow id="sid-86397EAD-67C2-4E79-9503-93FA4AC46FF5" sourceRef="startEvent1" targetRef="initVariablesTask"></sequenceFlow>
+    <sequenceFlow id="sid-A3883109-843E-462E-8D4E-57745A871E4A" sourceRef="initVariablesTask" targetRef="camelAsyncTask"></sequenceFlow>
+    <sequenceFlow id="sid-BDFE47D0-2C35-4990-AE24-F166D945F525" sourceRef="camelAsyncTask" targetRef="receiveAsyncTask"></sequenceFlow>
+    <sequenceFlow id="sid-6904C636-967D-4612-A888-A650A332AE82" sourceRef="receiveAsyncTask" targetRef="saveOutputTask"></sequenceFlow>
+    <sequenceFlow id="sid-4F811BA6-714D-4035-BF4D-CC3B487CC9CE" sourceRef="saveOutputTask" targetRef="sid-0BFFEEE9-61D4-4982-A2CA-F0A0AF6F0699"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_saga1">
+    <bpmndi:BPMNPlane bpmnElement="saga1" id="BPMNPlane_saga1">
+      <bpmndi:BPMNShape bpmnElement="startEvent1" id="BPMNShape_startEvent1">
+        <omgdc:Bounds height="30.0" width="30.0" x="60.0" y="160.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="camelAsyncTask" id="BPMNShape_camelAsyncTask">
+        <omgdc:Bounds height="80.0" width="100.36219727999998" x="330.0" y="135.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="receiveAsyncTask" id="BPMNShape_receiveAsyncTask">
+        <omgdc:Bounds height="80.0" width="100.0" x="510.0" y="135.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="initVariablesTask" id="BPMNShape_initVariablesTask">
+        <omgdc:Bounds height="80.0" width="100.0" x="150.0" y="135.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="saveOutputTask" id="BPMNShape_saveOutputTask">
+        <omgdc:Bounds height="80.0" width="100.0" x="705.0" y="135.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-0BFFEEE9-61D4-4982-A2CA-F0A0AF6F0699" id="BPMNShape_sid-0BFFEEE9-61D4-4982-A2CA-F0A0AF6F0699">
+        <omgdc:Bounds height="28.0" width="28.0" x="930.0" y="161.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-BDFE47D0-2C35-4990-AE24-F166D945F525" id="BPMNEdge_sid-BDFE47D0-2C35-4990-AE24-F166D945F525">
+        <omgdi:waypoint x="430.31219727996773" y="175.0"></omgdi:waypoint>
+        <omgdi:waypoint x="509.99999999991576" y="175.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-6904C636-967D-4612-A888-A650A332AE82" id="BPMNEdge_sid-6904C636-967D-4612-A888-A650A332AE82">
+        <omgdi:waypoint x="609.9499999999803" y="175.0"></omgdi:waypoint>
+        <omgdi:waypoint x="705.0" y="175.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-4F811BA6-714D-4035-BF4D-CC3B487CC9CE" id="BPMNEdge_sid-4F811BA6-714D-4035-BF4D-CC3B487CC9CE">
+        <omgdi:waypoint x="804.9499999999675" y="175.0"></omgdi:waypoint>
+        <omgdi:waypoint x="930.0" y="175.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-A3883109-843E-462E-8D4E-57745A871E4A" id="BPMNEdge_sid-A3883109-843E-462E-8D4E-57745A871E4A">
+        <omgdi:waypoint x="249.94999999996884" y="175.0"></omgdi:waypoint>
+        <omgdi:waypoint x="330.0" y="175.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-86397EAD-67C2-4E79-9503-93FA4AC46FF5" id="BPMNEdge_sid-86397EAD-67C2-4E79-9503-93FA4AC46FF5">
+        <omgdi:waypoint x="89.94999883049303" y="175.0"></omgdi:waypoint>
+        <omgdi:waypoint x="150.0" y="175.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
