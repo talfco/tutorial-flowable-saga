@@ -18,9 +18,6 @@ import static org.junit.Assert.assertEquals;
 @SpringBootTest
 public class DemoApplicationTests {
 
-    @Test
-    public void contextLoads() {
-    }
 
     @Test
     public void testIntroProcess() {
@@ -34,7 +31,7 @@ public class DemoApplicationTests {
 
         // Deploy intro process definition
         repositoryService.createDeployment().name("introProcessDefinition")
-                .addClasspathResource("processes/intro-process.bpmn20.xml")
+                .addClasspathResource("processes/IntroProcess.bpmn20.xml")
                 .deploy();
 
         // Start intro process instance
@@ -64,6 +61,46 @@ public class DemoApplicationTests {
         assertEquals(true, historicVariables.get(1).getValue());
 
         processEngine.close();
+    }
+
+    @Test
+    public void testSaga1Process() {
+        // Create Flowable engine
+        ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+
+        // Get main service interfaces
+        RepositoryService repositoryService = processEngine.getRepositoryService();
+        RuntimeService runtimeService = processEngine.getRuntimeService();
+        HistoryService historyService = processEngine.getHistoryService();
+
+        // Deploy intro process definition
+        repositoryService.createDeployment().name("saga1ProcessDefinition")
+                .addClasspathResource("processes/Saga1Process.bpmn20.xml")
+                .deploy();
+
+        // Start intro process instance
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("saga1Process");
+        try { Thread.sleep(3000); } catch (java.lang.InterruptedException ex) {}
+
+
+        List<HistoricVariableInstance> historicVariables = historyService
+                .createHistoricVariableInstanceQuery()
+                .processInstanceId(processInstance.getId())
+                .orderByVariableName()
+                .asc()
+                .list();
+
+        boolean found = false;
+        for (HistoricVariableInstance variable : historicVariables) {
+            if (variable.getVariableName().equals("camelBody")) {
+                found = true;
+                assertEquals("Processed: { 'name' : 'Hello World'}, { Result: OK }",variable.getValue());
+            }
+        }
+        assertTrue(found);
+
+        processEngine.close();
+
     }
 
 }
