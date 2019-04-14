@@ -17,11 +17,22 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    
     implementation 'org.flowable:flowable-spring-boot-starter-rest:6.4.1'
-    implementation 'org.apache.camel:camel-spring-boot-starter:2.23.0'
     implementation 'org.flowable:flowable-camel:6.4.1'
+    
+    implementation 'org.apache.camel:camel-spring-boot-starter:2.23.0'
+    implementation 'org.apache.camel:camel-stream-starter:2.23.0'
+    implementation 'org.apache.camel:camel-rabbitmq:2.23.0'
+    implementation 'org.apache.camel:camel-jackson:2.23.0'
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
+    
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    
     runtimeOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'com.h2database:h2'
+    
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'org.apache.camel:camel-test-spring:2.23.0'
 }
